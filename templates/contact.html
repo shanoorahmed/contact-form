@@ -1,0 +1,126 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+{{super()}}
+Contact Form
+{% endblock %}
+
+{% block css %}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.heading {
+    text-align: center;
+}
+
+.contact-form {
+    font-family: sans-serif;
+    width: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    border-radius: 5%;
+}
+
+form {
+    margin: 35px;
+}
+
+.input-field {
+    width: 400px;
+    height: 40px;
+    margin-top: 20px;
+    padding: 0 10px;
+    border: 1px solid #777;
+    border-radius: 14px;
+    outline: none;
+}
+
+.textarea-field {
+    font-family: sans-serif;
+    height: 150px;
+    padding-top: 10px;
+}
+
+.button {
+    padding-left: 170px;
+}
+
+.btn {
+    width: 75px;
+    border-radius: 20px;
+    color: #fff;
+    margin-top: 18px;
+    padding: 10px;
+    background-color: #161d6f;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #000;
+}
+
+.alert {
+    padding: 10px;
+    text-align: center;
+    background-color: #47c35a;
+    color: white;
+}
+
+.close-button {
+    position: absolute;
+    right: 45px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    float: right;
+    transition: 0.3s;
+}
+.close-button:hover {
+    color: black;
+}
+{% endblock %}
+
+{% block content %}
+<div class="contact-form">
+    <form action="/" method="POST">
+        <div class="container">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                {{ message }}
+                <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="heading">
+            <br>
+            <h1>CONTACT FORM</h1>
+        </div>
+        <br>
+        {{ form.hidden_tag() }}
+        {{ form.name(class="input-field", placeholder="Enter your name") }}
+        {{ form.email(class="input-field", placeholder="Enter your email") }}
+        {{ form.phone(class="input-field", placeholder="Enter your phone number") }}
+        {{ form.subject(class="input-field", placeholder="Enter the subject") }}
+        {{ form.message(class="input-field textarea-field", placeholder="Enter your message") }}
+        <div class="button">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block flash %}
+    
+{% endblock %}
