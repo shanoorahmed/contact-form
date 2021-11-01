@@ -49,7 +49,7 @@ class User(db.Model):
     subject = db.Column(db.String(25))
     message = db.Column(db.String(100))
     def __repr__(self):
-        return '< User %r>' % self.username
+        return '< User %r>' % self.name
 
 class ContactForm(FlaskForm):
     name = StringField('Name',validators = [DataRequired()])
